@@ -17,6 +17,8 @@ export async function createProduct(formData) {
   const description = String(formData.get("description") || "").trim();
   const price = Number(formData.get("price"));
   const stock = Number(formData.get("stock") || 0);
+  const imageUrl = formData.get("imageUrl")?.toString().trim() || null;
+
   if (!title || !description || Number.isNaN(price)) {
     // En seance 4 : on renverra un message d'erreur plus propre à l'UI
     throw new Error("Champs invalides.");
@@ -30,6 +32,7 @@ export async function createProduct(formData) {
       price,
       stock: Number.isNaN(stock) ? 0 : stock,
       isActive: true,
+      imageUrl,
     },
   });
   revalidatePath("/products");

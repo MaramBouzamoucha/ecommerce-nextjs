@@ -38,7 +38,7 @@ export async function POST(request) {
     const price = Number(body.price);
     const stock = Number(body.stock ?? 0);
     const categoryId = body.categoryId || null;
-    const imageUrl = body.imageUrl?.trim() || null;
+    
 
     if (!title || !description || Number.isNaN(price)) {
       return NextResponse.json(

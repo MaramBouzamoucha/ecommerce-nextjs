@@ -1,13 +1,27 @@
 /** @type {import('tailwindcss').Config} */
-export const content = [
+module.exports = {
+  content: [
     "./app/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}"
-];
-export const theme = {
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+
+  theme: {
     extend: {
-        animation: {
-            'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        },
+      fontFamily: {
+        // Utilise les variables CSS définies dans layout.js
+        sans: [
+          "var(--font-inter)",
+          "system-ui",
+          "sans-serif",
+        ],
+        heading: [
+          "var(--font-poppins)",
+          "system-ui",
+          "sans-serif",
+        ],
+      },
     },
+  },
+
+  plugins: [],
 };
-export const plugins = [];

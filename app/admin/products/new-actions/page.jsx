@@ -1,5 +1,5 @@
 import { createProduct } from "../../../actions/products";
-
+import Image from "next/image";
 export default function NewProductActionPage() {
   return (
     <div className="max-w-xl mx-auto p-6">
@@ -38,6 +38,16 @@ export default function NewProductActionPage() {
               required
             />
           </div>
+         <div>
+  <label className="block text-sm font-medium text-black">Image (URL)</label>
+  <input
+    name="imageUrl"
+    type="text"
+    className="w-full border rounded p-2 text-black"
+    placeholder="https://example.com/image.jpg"
+  />
+</div>
+
 
           <div>
             <label className="block text-sm font-medium text-black">Stock</label>
