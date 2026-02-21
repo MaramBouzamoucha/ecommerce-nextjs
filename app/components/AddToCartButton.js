@@ -26,7 +26,8 @@ export default function AddToCartButton({ productId }) {
 
     try {
       // Appel de la Server Action
-      const result = await addToCart(productId, 1);
+      const result = await addToCart(productId, 1, session); // on passe session du client
+
 
       if (result?.success) {
         setMessage("Ajouté au panier ✅");

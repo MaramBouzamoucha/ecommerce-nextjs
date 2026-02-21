@@ -5,12 +5,14 @@
 // - Voir leurs rôles
 // - (Future : modifier les rôles)
 
-import { prisma } from "@/lib/prisma";
-import { requireAdmin } from "@/lib/auth-utils";
+import { prisma } from "../../lib/prisma";
+import { requireAdmin } from "../../lib/auth-utils";
 
 export default async function AdminUsersPage() {
   // Vérification admin
   await requireAdmin();
+ 
+
 
   // Récupérer tous les utilisateurs
   const users = await prisma.user.findMany({

@@ -6,12 +6,21 @@
 // - Récupérer la session côté serveur
 
 import { getServerSession } from "next-auth";
-import { authOptions } from "./auth";
+
 import { redirect } from "next/navigation";
+import { authOptions } from "../lib/auth";
 
 // Récupérer la session côté serveur
 export async function getSession() {
-  return await getServerSession(authOptions);
+  try {
+    const session = await getServerSession(authOptions);
+    console.log("Session récupérée sur le serveur:", session ? "OUI" : "NON");
+    console.log("ROLE:", session.user.role);
+    return session;
+  } catch (error) {
+    console.error("Erreur dans getSession:", error);
+    return null;
+  }
 }
 
 // Vérifier que l'utilisateur est connecté
@@ -30,6 +39,8 @@ export async function requireAuth() {
 // Redirige vers unauthorized si pas admin
 export async function requireAdmin() {
   const session = await requireAuth();
+  console.log("SESSION:", session);   // 👈 AJOUTE ÇA
+  
 
   if (session.user.role !== "ADMIN") {
     redirect("/unauthorized");

@@ -80,13 +80,21 @@ export const authOptions = {
   // Callbacks pour personnaliser le comportement
   callbacks: {
     // Callback JWT : ajoute des infos au token
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.role = user.role;
-      }
-      return token;
-    },
+    async jwt({ token }) {
+  if (token?.email) {
+    const user = await prisma.user.findUnique({
+      where: { email: token.email },
+    });
+
+    if (user) {
+      token.role = user.role;
+      token.id = user.id;
+    }
+  }
+
+  return token;
+}
+,
 
     // Callback session : expose les infos dans la session client
     async session({ session, token }) {

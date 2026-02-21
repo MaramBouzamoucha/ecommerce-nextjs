@@ -11,7 +11,6 @@ export default function CartItemRow({ item }) {
   // Modifier la quantité
   async function handleQuantityChange(newQuantity) {
     if (newQuantity < 1) return;
-
     setLoading(true);
     setQuantity(newQuantity);
     await updateCartItem(item.id, newQuantity);

@@ -1,19 +1,19 @@
 "use server";
-
 import { getSession } from "../lib/auth-utils";
 import { prisma } from "../lib/prisma";
 import { revalidatePath } from "next/cache";
-
 /* =======================================================
    Ajouter un produit au panier
 ======================================================= */
 export async function addToCart(productId, quantity = 1) {
   const session = await getSession();
+  console.log("CONTENU USER:", session?.user);
 
   if (!session?.user?.id) {
-    return { success: false, error: "Non connecté" };
+    // Si l'id manque, on renvoie une erreur plus précise pour le debug
+    const detail = !session ? "Pas de session" : "ID manquant dans user";
+    return { success: false, error: `Non connecté (${detail})` };
   }
-
   const userId = session.user.id;
 
   try {

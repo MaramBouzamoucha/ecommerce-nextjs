@@ -6,8 +6,8 @@
 // - Nombre d'utilisateurs
 // - Chiffre d'affaires
 
-import { prisma } from "@/lib/prisma";
-import { requireAdmin } from "@/lib/auth-utils";
+import { prisma } from "../lib/prisma";
+import { requireAdmin } from "../lib/auth-utils";
 
 export default async function AdminDashboard() {
   // Vérification admin (double sécurité avec le layout)
@@ -74,7 +74,7 @@ export default async function AdminDashboard() {
         <h2 className="text-xl font-semibold text-gray-800 mb-4">Actions rapides</h2>
         <div className="flex gap-4">
           <a
-            href="/admin/products/new"
+            href="/admin/products/new-actions"
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
           >
             Ajouter un produit

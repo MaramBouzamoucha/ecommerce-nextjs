@@ -6,11 +6,12 @@
 // - Affiche un style spécifique
 
 import Link from "next/link";
-import { requireAdmin } from "@/lib/auth-utils";
+import { requireAdmin } from "../lib/auth-utils";
 
 export default async function AdminLayout({ children }) {
   // Vérification du rôle admin (redirige si pas autorisé)
   const session = await requireAdmin();
+  
 
   return (
     <div className="flex min-h-screen bg-gray-100">
