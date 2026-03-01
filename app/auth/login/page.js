@@ -1,5 +1,4 @@
 // app/auth/login/page.js
-"use client";
 
 /*
 Page de connexion utilisateur
