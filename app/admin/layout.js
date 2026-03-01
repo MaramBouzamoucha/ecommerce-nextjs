@@ -4,6 +4,7 @@
 // - Vérifie que l'utilisateur est admin
 // - Ajoute une sidebar de navigation admin
 // - Affiche un style spécifique
+export const dynamic = 'force-dynamic';
 
 import Link from "next/link";
 import { requireAdmin } from "../lib/auth-utils";
