@@ -5,7 +5,7 @@
 // - Nombre de commandes
 // - Nombre d'utilisateurs
 // - Chiffre d'affaires
-
+import Link from "next/link";
 import { prisma } from "../lib/prisma";
 import { requireAdmin } from "../lib/auth-utils";
 
@@ -71,22 +71,47 @@ export default async function AdminDashboard() {
 
       {/* Actions rapides */}
       <div className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">Actions rapides</h2>
-        <div className="flex gap-4">
-          <a
-            href="/admin/products/new-actions"
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          >
-            Ajouter un produit
-          </a>
-          <a
-            href="/admin/categories/new"
-            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-          >
-            Ajouter une catégorie
-          </a>
-        </div>
+  <h2 className="text-xl font-semibold text-gray-800 mb-4">
+    Actions rapides
+  </h2>
+
+  <div className="flex gap-4">
+    <Link
+      href="/admin/products/new"
+      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+    >
+      Ajouter un produit
+    </Link>
+
+    <Link
+      href="/admin/categories/new"
+      className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+    >
+      Ajouter une catégorie
+    </Link>
+  </div>
+</div><div className="bg-white rounded-lg shadow p-6">
+  <h2 className="text-xl font-semibold text-gray-800 mb-4">
+    Actions rapides
+  </h2>
+
+  <div className="flex gap-4">
+    <Link
+      href="/admin/products/new"
+      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+    >
+      Ajouter un produit
+    </Link>
+
+    <Link
+      href="/admin/categories/new"
+      className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+    >
+      Ajouter une catégorie
+    </Link>
+  </div>
+</div>
       </div>
-    </div>
+   
   );
 }
