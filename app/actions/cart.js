@@ -1,10 +1,11 @@
-"use server";
+"use server"
 import { getSession } from "../lib/auth-utils";
-import { prisma } from "../lib/prisma";
+import {prisma} from "../lib/prisma";
 import { revalidatePath } from "next/cache";
 /* =======================================================
    Ajouter un produit au panier
 ======================================================= */
+
 export async function addToCart(productId, quantity = 1) {
   const session = await getSession();
   console.log("CONTENU USER:", session?.user);

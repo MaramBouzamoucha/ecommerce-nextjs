@@ -1,0 +1,48 @@
+# === NOM DU WORKFLOW ===
+# Ce nom apparait dans l'onglet "Actions" de GitHub
+name: CI Next.js
+
+# === DECLENCHEURS ===
+on:
+  push:
+    branches: [main]   # Se lance quand on push sur main
+  pull_request:
+    branches: [main]   # Se lance quand une PR cible main
+
+# === JOBS ===
+jobs:
+  build:
+    # Machine virtuelle fournie par GitHub
+    runs-on: ubuntu-latest
+
+    # === ETAPES ===
+    steps:
+      # ETAPE 1 : Télécharger le code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # ETAPE 2 : Installer Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # ETAPE 3 : Installer les dépendances
+      - name: Install dependencies
+        run: npm ci
+
+      # ETAPE 4 : Linting
+      - name: Linting
+        run: npm run lint
+
+      # ETAPE 5 (optionnelle) : Tests
+      # - name: Run Tests
+      #   run: npm test
+
+      # ETAPE 6 : Build
+      - name: Build project
+        run: npm run build
+        env:
+          DATABASE_URL: "postgresql://user:pass@localhost:5432/db"
+          NEXTAUTH_SECRET: "ci-build-secret-not-real"
